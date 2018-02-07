@@ -32,3 +32,35 @@ def quick_sort(a):
 a = [5, 6, 3, 4, 2, 1]
 
 print(quick_sort(a))
+
+
+def partition(a, start, end):
+    pivot = a[start]
+    left = start + 1
+    right = end
+    done = False
+
+    while not done:
+        while left <= right and a[left] <= pivot:
+            left += 1
+        while left <= right and pivot <= a[right]:
+            right -= 1
+        if right < left:
+            done = True
+        else:
+            a[left], a[right] = a[right], a[left]
+
+    a[start], a[right] = a[right], a[start]
+
+    return right
+
+
+def quick_sort2(a, start, end):
+    if start < end:
+        pivot = partition(a, start, end)
+        quick_sort2(a, start, pivot - 1)
+        quick_sort2(a, pivot + 1, end)
+    return a
+
+
+print(quick_sort2(a, 0, len(a) - 1))
