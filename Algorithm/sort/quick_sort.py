@@ -64,3 +64,27 @@ def quick_sort2(a, start, end):
 
 
 print(quick_sort2(a, 0, len(a) - 1))
+
+def quick_sort3(a, left,right):
+    if left<right:
+        i=left
+        j=right
+        pivot=a[left]
+        while i<j:
+            while a[j]>pivot:
+                j-=1
+            while i<j and a[i]<=pivot :
+                i+=1
+
+            a[i],a[j]=a[j],a[i]
+
+        a[left]=a[i]
+        a[i]=pivot
+
+        quick_sort3(a, left, i-1)
+        quick_sort3(a, i+1, right)
+
+
+d = [5, 6, 3, 4, 2, 1]
+quick_sort3(d,0,len(d)-1)
+print(d)
